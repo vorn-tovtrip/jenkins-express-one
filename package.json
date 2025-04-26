@@ -3,16 +3,48 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node dist/index.js ",
-    "dev":"tsx --watch index.ts"
-  
+    "start": "tsc --build && node dist/index.js ",
+    "dev": "tsx --watch index.ts",
+    "build": "tsc --build",
+    "start:dev": "nodemon --watch '**/*.ts' --exec ts-node index.ts",
+    "shutdown": "tsc --build && node dist/src/utils/script/shutdown.js",
+    "db:create": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate-undo": "sequelize db:migrate:undo",
+    "db:undo-all": "sequelize-cli db:migrate:undo:all",
+    "db:undo": "sequelize-cli db:migrate:undo",
+    "db:seed:all": "sequelize-cli db:seed:all",
+    "db:seed:todo": "sequelize-cli db:seed --seed 20250424091157-demo-todo"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "@sequelize/mysql": "^7.0.0-alpha.46",
+    "@types/morgan": "^1.9.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-requests-logger": "^4.0.3",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.0",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.2",
+    "sequelize-typescript": "^2.1.6",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.2",
+    "@types/sequelize": "^4.28.20",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
   }
 }
